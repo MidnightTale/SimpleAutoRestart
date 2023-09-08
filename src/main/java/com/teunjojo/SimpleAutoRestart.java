@@ -31,15 +31,17 @@ public final class SimpleAutoRestart extends JavaPlugin {
 
         ZonedDateTime now = ZonedDateTime.now();
         ZonedDateTime nextRestart = now.withHour(hour).withMinute(minute).withSecond(0);
-        if (now.compareTo(nextRestart) > 0)
-        nextRestart = nextRestart.plusDays(1);
+        if (now.compareTo(nextRestart) >= 0) {
+            // If the next restart time is in the past, add one day to it
+            nextRestart = nextRestart.plusDays(1);
+        }
 
         Duration duration = Duration.between(now, nextRestart);
         long initialDelay = duration.getSeconds();
-        WarnReboot("Restarting in 5 minutes", (int) initialDelay - 5*60, false);
-        WarnReboot("Restarting in 3 minutes", (int) initialDelay - 3*60, false);
-        WarnReboot("Restarting in 2 minutes", (int) initialDelay - 2*60, false);
-        WarnReboot("Restarting in 1 minute", (int) initialDelay - 1*60, false);
+        WarnReboot("Restarting in 5 minutes", (int) initialDelay - 5 * 60, false);
+        WarnReboot("Restarting in 3 minutes", (int) initialDelay - 3 * 60, false);
+        WarnReboot("Restarting in 2 minutes", (int) initialDelay - 2 * 60, false);
+        WarnReboot("Restarting in 1 minute", (int) initialDelay - 1 * 60, false);
         WarnReboot("Restarting in 3 seconds", (int) initialDelay - 3, false);
         WarnReboot("Restarting in 2 seconds", (int) initialDelay - 2, false);
         WarnReboot("Restarting in 1 second", (int) initialDelay - 1, false);

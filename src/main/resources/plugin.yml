@@ -5,3 +5,4 @@ description: ${project.description}
 api-version: 1.19
 author: teunjojo
 website: ${project.url}
+folia-supported: true
